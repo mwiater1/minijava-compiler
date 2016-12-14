@@ -12,6 +12,5 @@ dependencies {
 }
 
 generateGrammarSource {
-    print project.group.toString()
     arguments += ["-package", project.group.toString()]
 }
