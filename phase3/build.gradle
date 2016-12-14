@@ -1,0 +1,10 @@
+group 'com.mateuszwiater.csc444.minijavacompiler'
+version '1.0-SNAPSHOT'
+
+run {
+    mainClassName = project.group.toString() + '.Phase3'
+}
+
+dependencies {
+    compile project(':phase2')
+}

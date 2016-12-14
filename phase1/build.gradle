@@ -1,0 +1,17 @@
+group 'com.mateuszwiater.csc444.minijavacompiler'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'antlr'
+
+run {
+    mainClassName = project.group.toString() + '.Phase1'
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.5.3'
+}
+
+generateGrammarSource {
+    print project.group.toString()
+    arguments += ["-package", project.group.toString()]
+}

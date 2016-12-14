@@ -1,2 +1,5 @@
 rootProject.name = 'minijava-compiler'
+include 'phase1'
+include 'phase2'
+include 'phase3'
 
