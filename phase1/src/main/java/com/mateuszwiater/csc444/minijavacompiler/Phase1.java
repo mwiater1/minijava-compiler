@@ -38,6 +38,11 @@ public class Phase1 {
         parser.addErrorListener(new DiagnosticErrorListener());
         parser.addErrorListener(new MiniJavaSyntaxErrorListener());
         parser.goal();
+        parser.reset();
+    }
+
+    public MiniJavaParser getParser() {
+        return parser;
     }
 
     private class MiniJavaSyntaxErrorListener extends BaseErrorListener {
