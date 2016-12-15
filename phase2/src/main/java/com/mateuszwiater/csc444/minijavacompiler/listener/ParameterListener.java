@@ -1,15 +1,12 @@
 package com.mateuszwiater.csc444.minijavacompiler.listener;
 
-import com.mateuszwiater.csc444.minijavacompiler.MiniJavaBaseListener;
 import com.mateuszwiater.csc444.minijavacompiler.MiniJavaParser;
 import com.mateuszwiater.csc444.minijavacompiler.Parameter;
-import com.mateuszwiater.csc444.minijavacompiler.Scope;
 
 public class ParameterListener extends MiniJavaBaseListener {
-    final Scope scope;
 
-    public ParameterListener(final Scope scope) {
-        this.scope = scope;
+    ParameterListener(final ListenerScope scope) {
+        super(scope);
     }
 
     @Override

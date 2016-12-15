@@ -1,15 +1,12 @@
 package com.mateuszwiater.csc444.minijavacompiler.listener;
 
 import com.mateuszwiater.csc444.minijavacompiler.Klass;
-import com.mateuszwiater.csc444.minijavacompiler.MiniJavaBaseListener;
 import com.mateuszwiater.csc444.minijavacompiler.MiniJavaParser;
-import com.mateuszwiater.csc444.minijavacompiler.Scope;
 
 public class KlassListener extends MiniJavaBaseListener {
-    private final Scope scope;
 
-    public KlassListener(final Scope scope) {
-        this.scope = scope;
+    KlassListener(final ListenerScope scope) {
+        super(scope);
     }
 
     @Override

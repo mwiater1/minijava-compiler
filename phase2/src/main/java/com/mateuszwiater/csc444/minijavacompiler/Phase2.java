@@ -1,10 +1,6 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
-import com.mateuszwiater.csc444.minijavacompiler.listener.KlassListener;
-import com.mateuszwiater.csc444.minijavacompiler.listener.MethodListener;
-import com.mateuszwiater.csc444.minijavacompiler.listener.ParameterListener;
-import com.mateuszwiater.csc444.minijavacompiler.listener.TypeListener;
-import com.mateuszwiater.csc444.minijavacompiler.listener.VariableListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.ListenerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,16 +14,19 @@ public class Phase2 {
         final URL url = Phase2.class.getClassLoader().getResource("Test.java");
         final Phase1 phase1 = new Phase1(new File(url.toURI()));
         MiniJavaParser parser = phase1.getParser();
-        Scope scope = new Scope();
-        parser.addParseListener(new KlassListener(scope));
-        parser.addParseListener(new VariableListener(scope));
-        parser.addParseListener(new TypeListener(scope));
-        parser.addParseListener(new MethodListener(scope));
-        parser.addParseListener(new ParameterListener(scope));
+
+        ListenerFactory lf = new ListenerFactory();
+
+        parser.addParseListener(lf.getKlassListener());
+        parser.addParseListener(lf.getMethodListener());
+        parser.addParseListener(lf.getParameterListener());
+        parser.addParseListener(lf.getStatementListener());
+        parser.addParseListener(lf.getTypeListener());
+        parser.addParseListener(lf.getVariableListener());
         parser.goal();
         parser.reset();
 
-        scope.getKlasses().forEach(k -> {
+        lf.getKlasses().forEach(k -> {
             System.out.println(k);
             if(k.getSuperKlass() != null) {
                 System.out.println("\tExtends: " + k.getSuperKlass());
