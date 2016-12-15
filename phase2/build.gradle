@@ -7,4 +7,5 @@ run {
 
 dependencies {
     compile project(':phase1')
+    compile 'org.apache.commons:commons-lang3:3.4'
 }
