@@ -11,22 +11,28 @@ mainClass
 :	'class' Identifier LCB 'public' 'static' 'void' 'main' LP 'String' LSB RSB Identifier RP LCB statement RCB RCB ;
 
 classDeclaration
-:	'class' Identifier ( 'extends' Identifier )? LCB fieldDeclaration* methodDeclaration* RCB ;
+:	'class' Identifier ( extendClass )? LCB fieldDeclaration* methodDeclaration* RCB ;
+
+extendClass
+: 'extends' Identifier ;
 
 fieldDeclaration
 :	varDeclaration ;
 
 varDeclaration
-:	type Identifier SEMICOLON ;
+:	var SEMICOLON ;
 
 methodDeclaration
-:	'public' type Identifier LP parameterList? RP LCB methodBody RCB ;
+:	'public' var LP parameterList? RP LCB methodBody RCB ;
 
 parameterList
 :   parameter (DELIMITER parameter)* ;
 
 parameter
-:   type Identifier ;
+:   var ;
+
+var
+: identifier Identifier ;
 
 methodBody
 :	localDeclaration* statement* RETURN expression SEMICOLON ;
@@ -34,7 +40,7 @@ methodBody
 localDeclaration
 :	varDeclaration ;
 
-type
+identifier
 :   INT
 |	BOOLEAN
 |   Identifier

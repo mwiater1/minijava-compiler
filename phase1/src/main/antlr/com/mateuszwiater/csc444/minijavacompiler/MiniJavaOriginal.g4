@@ -16,16 +16,16 @@ fieldDeclaration
 :	varDeclaration ;
 
 varDeclaration
-:	type Identifier SEMICOLON ;
+:	identifier Identifier SEMICOLON ;
 
 methodDeclaration
-:	'public' type Identifier LP parameterList? RP LCB methodBody RCB ;
+:	'public' identifier Identifier LP parameterList? RP LCB methodBody RCB ;
 
 parameterList
 :   parameter (DELIMITER parameter)* ;
 
 parameter
-:   type Identifier ;
+:   identifier Identifier ;
 
 methodBody
 :	localDeclaration* statement* RETURN expression SEMICOLON ;
@@ -33,7 +33,7 @@ methodBody
 localDeclaration
 :	varDeclaration ;
 
-type
+identifier
 :   INT
 |	BOOLEAN
 |   Identifier
