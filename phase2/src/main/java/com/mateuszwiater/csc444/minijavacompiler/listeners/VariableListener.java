@@ -29,8 +29,7 @@ public class VariableListener extends MiniJavaBaseListener {
     }
 
     @Override
-    public void exitVar(MiniJavaParser.VarContext ctx) {
-        // Create a variable
+    public void exitTypeIdentifier(MiniJavaParser.TypeIdentifierContext ctx) {
         scope.getVariableStack().push(new Variable(scope.getTypeStack().pop(), ctx.getStop().getText()));
     }
 }

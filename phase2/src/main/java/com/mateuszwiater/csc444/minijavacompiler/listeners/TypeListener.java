@@ -13,7 +13,7 @@ public class TypeListener extends MiniJavaBaseListener {
     }
 
     @Override
-    public void exitIdentifier(MiniJavaParser.IdentifierContext ctx) {
-        scope.getTypeStack().push(new Type(ctx.getStart().getText()));
+    public void exitType(MiniJavaParser.TypeContext ctx) {
+        scope.getTypeStack().push(new Type(ctx.getText()));
     }
 }
