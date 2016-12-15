@@ -1,5 +1,6 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
+import com.mateuszwiater.csc444.minijavacompiler.statement.Statement;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

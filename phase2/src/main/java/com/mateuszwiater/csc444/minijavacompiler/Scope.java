@@ -1,5 +1,7 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
+import com.mateuszwiater.csc444.minijavacompiler.statement.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

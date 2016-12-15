@@ -1,10 +1,10 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
-import com.mateuszwiater.csc444.minijavacompiler.listeners.KlassListener;
-import com.mateuszwiater.csc444.minijavacompiler.listeners.MethodListener;
-import com.mateuszwiater.csc444.minijavacompiler.listeners.ParameterListener;
-import com.mateuszwiater.csc444.minijavacompiler.listeners.TypeListener;
-import com.mateuszwiater.csc444.minijavacompiler.listeners.VariableListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.KlassListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.MethodListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.ParameterListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.TypeListener;
+import com.mateuszwiater.csc444.minijavacompiler.listener.VariableListener;
 
 import java.io.File;
 import java.io.IOException;

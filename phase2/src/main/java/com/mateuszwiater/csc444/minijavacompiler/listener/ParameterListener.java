@@ -1,4 +1,4 @@
-package com.mateuszwiater.csc444.minijavacompiler.listeners;
+package com.mateuszwiater.csc444.minijavacompiler.listener;
 
 import com.mateuszwiater.csc444.minijavacompiler.MiniJavaBaseListener;
 import com.mateuszwiater.csc444.minijavacompiler.MiniJavaParser;
