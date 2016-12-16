@@ -1,6 +1,7 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
-import com.mateuszwiater.csc444.minijavacompiler.listener.ListenerFactory;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,19 +15,13 @@ public class Phase2 {
         final URL url = Phase2.class.getClassLoader().getResource("Test.java");
         final Phase1 phase1 = new Phase1(new File(url.toURI()));
         MiniJavaParser parser = phase1.getParser();
+        parser.setBuildParseTree(true);
+        ParseTreeWalker walker = new ParseTreeWalker();
+        ParserRuleContext tree = parser.goal();
+        MiniJavaWalkListener walkListener = new MiniJavaWalkListener();
+        walker.walk(walkListener, tree);
 
-        ListenerFactory lf = new ListenerFactory();
-
-        parser.addParseListener(lf.getKlassListener());
-        parser.addParseListener(lf.getMethodListener());
-        parser.addParseListener(lf.getParameterListener());
-        parser.addParseListener(lf.getStatementListener());
-        parser.addParseListener(lf.getTypeListener());
-        parser.addParseListener(lf.getVariableListener());
-        parser.goal();
-        parser.reset();
-
-        lf.getKlasses().forEach(k -> {
+        walkListener.getKlasses().forEach(k -> {
             System.out.println(k);
             if(k.getSuperKlass() != null) {
                 System.out.println("\tExtends: " + k.getSuperKlass());
@@ -39,13 +34,11 @@ public class Phase2 {
             k.getMethods().forEach(m -> {
                 System.out.println("\t\t" + m);
                 System.out.println("\t\t\tParameters:");
-                m.getParameters().forEach(p -> {
-                    System.out.println("\t\t\t\t" + p.getVariable());
-                });
+                m.getParameters().forEach(p -> System.out.println("\t\t\t\t" + p.getVariable()));
                 System.out.println("\t\t\tVariables:");
-                m.getVariables().forEach(v -> {
-                    System.out.println("\t\t\t\t" + v);
-                });
+                m.getVariables().forEach(v -> System.out.println("\t\t\t\t" + v));
+                System.out.println("\t\t\tStatements:");
+                m.getStatements().forEach(s -> System.out.println("\t\t\t\t" + s));
             });
         });
     }

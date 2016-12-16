@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Type extends Identifiable {
 
     public Type(final String type) {
-        setIdentifier(type);
+        super(type);
     }
 
     @Override

@@ -1,42 +1,34 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
+import com.mateuszwiater.csc444.minijavacompiler.expression.Expression;
 import com.mateuszwiater.csc444.minijavacompiler.statement.Statement;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Method extends Identifiable {
     private Type returnType;
+    private Expression returnExpression;
     private final List<Variable> variables;
     private final List<Parameter> parameters;
     private final List<Statement> statements;
 
-    public Method() {
-        this.variables = new ArrayList<>();
-        this.parameters = new ArrayList<>();
-        this.statements = new ArrayList<>();
-    }
-
-    public void setReturnType(Type returnType) {
+    public Method(final String identifier, final Type returnType, final List<Parameter> parameters, final List<Variable> variables, final List<Statement> statements, final Expression returnExpression) {
+        super(identifier);
         this.returnType = returnType;
-    }
-
-    public void addVariable(final Variable variable) {
-        variables.add(variable);
-    }
-
-    public void addParameter(final Parameter parameter) {
-        parameters.add(parameter);
-    }
-
-    public void addStatement(final Statement statement) {
-        statements.add(statement);
+        this.variables = variables;
+        this.parameters = parameters;
+        this.statements = statements;
+        this.returnExpression = returnExpression;
     }
 
     public Type getReturnType() {
         return returnType;
+    }
+
+    public Expression getReturnExpression() {
+        return returnExpression;
     }
 
     public List<Variable> getVariables() {

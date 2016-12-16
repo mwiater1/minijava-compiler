@@ -15,6 +15,11 @@ public class Parameter {
     }
 
     @Override
+    public String toString() {
+        return variable.toString();
+    }
+
+    @Override
     public int hashCode() {
         return new HashCodeBuilder(7, 11)
                 .append(variable.getType())

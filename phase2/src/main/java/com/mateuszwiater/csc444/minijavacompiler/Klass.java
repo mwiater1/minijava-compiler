@@ -1,30 +1,22 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Klass extends Identifiable {
     private Klass superKlass;
     private final List<Method> methods;
-    private final List<Klass> childKlasses;
     private final List<Variable> variables;
 
-    public Klass() {
-        methods = new ArrayList<>();
-        variables = new ArrayList<>();
-        childKlasses = new ArrayList<>();
+    public Klass(final String identifier) {
+        super(identifier);
+        methods = null;
+        variables = null;
     }
 
-    public void addMethod(final Method method) {
-        methods.add(method);
-    }
-
-    public void addChildKlass(final Klass klass) {
-        childKlasses.add(klass);
-    }
-
-    public void addVariable(final Variable variable) {
-        variables.add(variable);
+    public Klass(final String identifier, final Klass superKlass, final List<Variable> variables, final List<Method> methods) {
+        super(identifier);
+        this.methods = methods;
+        this.variables = variables;
     }
 
     public void setSuperKlass(Klass superKlass) {
@@ -37,10 +29,6 @@ public class Klass extends Identifiable {
 
     public List<Method> getMethods() {
         return methods;
-    }
-
-    public List<Klass> getChildKlasses() {
-        return childKlasses;
     }
 
     public List<Variable> getVariables() {

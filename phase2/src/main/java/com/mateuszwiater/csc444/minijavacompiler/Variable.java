@@ -7,7 +7,7 @@ public class Variable extends Identifiable {
     private final Type type;
 
     public Variable(final Type type, final String identifier) {
-        setIdentifier(identifier);
+        super(identifier);
         this.type = type;
     }
 

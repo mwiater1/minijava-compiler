@@ -1,17 +1,13 @@
 package com.mateuszwiater.csc444.minijavacompiler;
 
 public abstract class Identifiable {
-    private String identifier;
+    private final String identifier;
 
-    Identifiable() {
-        identifier = null;
+    Identifiable(final String identifier) {
+        this.identifier = identifier;
     }
 
     public String getIdentifier() {
         return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 }

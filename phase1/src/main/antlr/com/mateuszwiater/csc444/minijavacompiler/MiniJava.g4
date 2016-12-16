@@ -23,10 +23,7 @@ varDeclaration
 :	typeIdentifier SEMICOLON ;
 
 methodDeclaration
-:	'public' typeIdentifier LP parameterList? RP LCB methodBody RCB ;
-
-parameterList
-:   parameter (DELIMITER parameter)* ;
+:	'public' typeIdentifier LP ( parameter (DELIMITER parameter)* )? RP LCB methodBody RCB ;
 
 parameter
 :   typeIdentifier ;
@@ -47,13 +44,34 @@ type
 |	INT LSB RSB ;
 
 statement
-:   LCB statement* RCB                                      #nestedStatement
-|   SOUT LP  expression RP SEMICOLON                        #printStatement
-|	WHILE LP expression RP whileBlock                       #whileStatement
-|	Identifier EQ expression SEMICOLON                      #variableAssignmentStatement
-|   IF LP expression RP ifBlock ELSE elseBlock              #ifElseStatement
-|	Identifier LSB expression RSB EQ expression SEMICOLON   #arrayAssignmentStatement
-|   SWITCH LP expression RP LCB switchCaseBlock RCB         #switchStatement;
+:   printStatement
+|	whileStatement
+|   nestedStatement
+|   switchStatement
+|   ifElseStatement
+|	arrayAssignmentStatement
+|   variableAssignmentStatement;
+
+nestedStatement
+: LCB statement* RCB ;
+
+printStatement
+: SOUT LP expression RP SEMICOLON ;
+
+whileStatement
+: WHILE LP expression RP whileBlock ;
+
+variableAssignmentStatement
+: Identifier EQ expression SEMICOLON ;
+
+switchStatement
+: SWITCH LP expression RP LCB caseBlock RCB ;
+
+ifElseStatement
+: IF LP expression RP ifBlock ELSE elseBlock ;
+
+arrayAssignmentStatement
+: Identifier LSB expression RSB EQ expression SEMICOLON ;
 
 ifBlock
 :	statement ;
@@ -64,7 +82,7 @@ elseBlock
 whileBlock
 :	statement ;
 
-switchCaseBlock
+caseBlock
 :   switchCase* defaultSwitchCase;
 
 switchCase
